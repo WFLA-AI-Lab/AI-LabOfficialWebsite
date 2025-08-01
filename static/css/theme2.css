@@ -1,0 +1,240 @@
+/* 导航栏样式 */
+.navbar-custom {
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 0.8rem 0;
+}
+
+.logo-img {
+    width: 200px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.brand-text {
+    color: #333333;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.navbar-text {
+    color: #666666;
+    font-weight: 500;
+}
+
+.navbar-nav .nav-link {
+    color: #333333;
+    margin-left: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #4285F4;
+}
+
+.dropdown-menu {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    border-radius: 6px;
+    margin: 2px 0;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #E8F0FE;
+    color: #4285F4;
+}
+
+/* 主区域样式 */
+.hero-section {
+    background-color: #FCFCFC;
+}
+
+.ai-lab-title {
+    color: #4285F4;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.typing-text {
+    font-size: 1.2rem;
+    color: #333333;
+    min-height: 2rem;
+}
+
+.join-btn {
+    background-color: #4285F4;
+    color: #ffffff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.join-btn:hover {
+    background-color: #3367D6;
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+}
+
+/* 分部区域样式 */
+.departments-section {
+    background-color: #ffffff;
+}
+
+.section-title {
+    color: #333333;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #4285F4;
+    border-radius: 3px;
+}
+
+.department-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+.department-card:nth-child(1)::before {
+    background-image: url('../images/llm-bg.jpg');
+}
+
+.department-card:nth-child(2)::before {
+    background-image: url('../images/nn-bg.jpg');
+}
+
+.department-card:nth-child(3)::before {
+    background-image: url('../images/ml-bg.jpg');
+}
+
+.department-card .card-title {
+    color: #333333;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.department-card .card-text {
+    color: #666666;
+}
+
+.department-card.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 动态和社刊区块样式 */
+.features-section {
+    background-color: #FCFCFC;
+}
+
+.feature-card {
+    border-radius: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card:nth-child(1)::before {
+    background-image: url('../images/news-bg.jpg');
+}
+
+.feature-card:nth-child(2)::before {
+    background-image: url('../images/magazine-bg.jpg');
+}
+
+.feature-title {
+    color: #333333;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.feature-desc {
+    color: #666666;
+    font-size: 1.1rem;
+}
+
+.feature-link {
+    color: #4285F4;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.feature-link:hover {
+    color: #3367D6;
+    padding-left: 5px;
+}
+
+.feature-card.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 底部区域样式 */
+.footer-section {
+    background-color: #202124;
+    color: #ffffff;
+}
+
+.footer-title {
+    color: #ffffff;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #4285F4;
+    border-radius: 2px;
+}
+
+.footer-link {
+    color: #CCCCCC;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.footer-link:hover {
+    color: #4285F4;
+    padding-left: 5px;
+}
+
+.footer-list {
+    list-style: none;
+    padding: 0;
+}
+
+.copyright {
+    color: #AAAAAA;
+    font-size: 0.9rem;
+}
