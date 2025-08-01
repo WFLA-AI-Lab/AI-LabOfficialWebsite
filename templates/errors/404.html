@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
+  <meta charset="UTF-8">
+  <title>404 - 页面未找到</title>
+  <link rel="stylesheet" href="css/404.css">
+</head>
+<body>
+  <!-- 容器：居中布局 -->
+  <div class="error-container">
+    <!-- 错误标题区 -->
+    <div class="error-header">
+      <h1 class="error-code">404</h1>
+      <p class="error-subtitle">您进入了无效的路由，请检查/后的内容是否正确，您也可以点击<a href="/">这里</a>返回主页。</p>
+      <p class="error-subtitle">欢迎您点击<a href="/">这里</a>前往github issues反馈讨论问题。</p>
+      <p class="error-subtitle">致敬先辈↓</p>
+    </div>
+    <!-- 插画区（可替换为SVG/动图） -->
+    <div class="error-illustration">
+      <img src="/static/images/404.png" alt="404插画">
+    </div>
+  </div>
+</body>
+</html>

@@ -53,6 +53,7 @@
 /* 主区域样式 */
 .hero-section {
     background-color: #FCFCFC;
+    margin-bottom: 3rem;
 }
 
 .ai-lab-title {
@@ -88,6 +89,7 @@
 /* 分部区域样式 */
 .departments-section {
     background-color: #ffffff;
+    margin-bottom: 3rem;
 }
 
 .section-title {
@@ -147,12 +149,15 @@
 /* 动态和社刊区块样式 */
 .features-section {
     background-color: #FCFCFC;
+    margin-bottom: 3rem;
 }
 
 .feature-card {
     border-radius: 15px;
-    background-color: #ffffff;
+    background-color: #fff7f7;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    min-height: 300px;
+    margin: 3rem;
 }
 
 .feature-card:nth-child(1)::before {
@@ -183,7 +188,7 @@
 
 .feature-link:hover {
     color: #2A8644;
-    padding-left: 5px;
+    padding-left: 20px;
 }
 
 .feature-card.card-hover:hover {
@@ -203,6 +208,7 @@
     position: relative;
     padding-bottom: 0.5rem;
     margin-bottom: 1rem;
+    margin-top: 5rem;
 }
 
 .footer-title::after {
@@ -237,4 +243,5 @@
 .copyright {
     color: #AAAAAA;
     font-size: 0.9rem;
+    margin-top: 2rem;
 }

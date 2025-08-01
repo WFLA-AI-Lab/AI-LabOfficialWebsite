@@ -8,15 +8,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus@2.3.4/dist/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
     <!-- 主题样式 - 可切换theme1.css、theme2.css、theme3.css -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
     
     <style>
         /* 全局通用样式 */
         * {
             margin: 0;
-            padding: 0;
+            /* padding: 0; */
             box-sizing: border-box;
         }
         
@@ -145,7 +145,7 @@
     </nav>
 
     <!-- 主区域 -->
-    <section class="hero-section py-12">
+    <section class="hero-section py-12 mb-10">
         <div class="container text-center">
             <h1 class="mb-6">Welcome to <span class="cascadia-font ai-lab-title">AI Lab</span></h1>
             
@@ -158,11 +158,11 @@
     </section>
 
     <!-- 分部展示 -->
-    <section class="departments-section py-12">
+    <section class="departments-section py-12 mb-10">
         <div class="container">
             <h2 class="section-title text-center mb-10">分部 Departments</h2>
             
-            <div class="row g-6">
+            <div class="row g-16">
                 <!-- 大语言模型分部 -->
                 <div class="col-md-4">
                     <div class="card department-card bg-blur card-hover h-100">
@@ -200,13 +200,13 @@
     </section>
 
     <!-- 动态和社刊区块 -->
-    <section class="features-section py-12">
+    <section class="features-section py-12 mb-10">
         <div class="container">
             <div class="row g-6">
                 <!-- 动态区块 -->
                 <div class="col-md-6">
-                    <div class="feature-card bg-blur shine-effect card-hover h-100">
-                        <div class="p-8 content-wrapper">
+                    <div class="card department-card bg-blur card-hover h-100">
+                        <div class="card-body p-6 content-wrapper">
                             <h3 class="feature-title mb-4">动态 News</h3>
                             <p class="feature-desc">及时了解社团最新活动、项目进展和AI领域前沿资讯，把握人工智能发展脉搏。</p>
                             <a href="/news" class="feature-link mt-4 d-inline-block">查看更多 →</a>
@@ -216,8 +216,8 @@
                 
                 <!-- 社刊区块 -->
                 <div class="col-md-6">
-                    <div class="feature-card bg-blur shine-effect card-hover h-100">
-                        <div class="p-8 content-wrapper">
+                    <div class="card department-card bg-blur card-hover h-100">
+                        <div class="card-body p-6 content-wrapper">
                             <h3 class="feature-title mb-4">社刊 Magazine</h3>
                             <p class="feature-desc">汇集社团研究成果、技术教程和AI科普文章，分享知识，共同成长。</p>
                             <a href="/magazine" class="feature-link mt-4 d-inline-block">浏览期刊 →</a>

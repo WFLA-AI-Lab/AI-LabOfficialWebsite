@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let isEnd = false;
     
     function typeEffect() {
-        const speed = isDeleting ? 50 : 150;
+        let randInterval = Math.random();
+        const speed = isDeleting ? randInterval*50 : randInterval*100;
         
         if (isDeleting) {
             textElement.textContent = text.substring(0, index - 1);
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         else if (!isDeleting && index === text.length) {
             isEnd = true;
             isDeleting = true;
-            setTimeout(typeEffect, 1500); // 停留1.5秒
+            setTimeout(typeEffect, 2500); // 停留2.5秒
             return;
         }
         
@@ -37,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 开始打字效果
+
     setTimeout(typeEffect, 500);
 });
 
