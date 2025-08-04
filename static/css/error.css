@@ -1,0 +1,85 @@
+/* 全局重置 & 布局 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Segoe UI', sans-serif; 
+  background: #f9fafc; 
+  color: #333; 
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+/* 容器：限制宽度，居中 */
+.error-container { 
+  text-align: center; 
+  max-width: 600px; 
+  width: 90%; 
+}
+
+/* 404数字：浮动动画 */
+.error-code { 
+  font-size: 8rem; 
+  font-weight: 800; 
+  color: #e0e7ff; 
+  animation: float 3s infinite ease-in-out; 
+}
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+/* 插画：悬停缩放 */
+.error-illustration img { 
+  max-width: 300px; 
+  opacity: 0.9; 
+  transition: transform 0.3s; 
+}
+.error-illustration img:hover { transform: scale(1.05); }
+
+/* 按钮：渐变+动效 */
+.btn { 
+  display: inline-block; 
+  padding: 0.8rem 2rem; 
+  background: #34A853; 
+  color: #fff; 
+  text-decoration: none; 
+  border-radius: 25px; 
+  transition: all 0.3s; 
+  margin: 0.5rem; 
+}
+.btn:hover { 
+  background: #2A8644; 
+  transform: translateY(-2px); 
+  box-shadow: 0 5px 15px rgba(52, 168, 83, 0.2); 
+}
+
+/* 搜索框：圆角拼接 */
+.search-box { margin: 1.5rem 0; }
+.search-box input { 
+  padding: 0.6rem 1rem; 
+  border: 1px solid #ddd; 
+  border-radius: 25px 0 0 25px; 
+  outline: none; 
+}
+.search-box button { 
+  padding: 0.6rem 1.2rem; 
+  background: #34A853; 
+  color: #fff; 
+  border: none; 
+  border-radius: 0 25px 25px 0; 
+  cursor: pointer; 
+  transition: background 0.3s; 
+}
+.search-box button:hover { background: #2A8644; }
+
+/* 响应式适配（手机端） */
+@media (max-width: 576px) {
+  .error-code { font-size: 6rem; }
+  .search-box { flex-direction: column; }
+  .search-box input, .search-box button { 
+    border-radius: 25px; 
+    margin: 0.5rem 0; 
+  }
+}

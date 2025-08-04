@@ -46,9 +46,12 @@ class Magazine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     issue = db.Column(db.String(20), nullable=False)  # 期号
-    description = db.Column(db.Text)
-    file_path = db.Column(db.String(200))  # 社刊文件路径
+    description = db.Column(db.Text)  # 摘要（替代原 abstract）
+    file_path = db.Column(db.String(200))  # 社刊封面/附件路径（保留）
+    content_path = db.Column(db.String(200), nullable=False)  # 新增：正文HTML文件路径
     published_at = db.Column(db.DateTime, default=datetime.utcnow)
+    author = db.Column(db.String(100))  # 作者
+    read_time = db.Column(db.String(20))  # 阅读时间
 
     def to_dict(self):
         return {
@@ -56,8 +59,10 @@ class Magazine(db.Model):
             'title': self.title,
             'issue': self.issue,
             'description': self.description,
-            'file_path': self.file_path,
-            'published_at': self.published_at.strftime('%Y-%m-%d')
+            'content_path': self.content_path,  # 返回HTML路径
+            'published_at': self.published_at.strftime('%Y-%m-%d'),
+            'author': self.author,
+            'read_time': self.read_time
         }
 
 

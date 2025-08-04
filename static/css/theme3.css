@@ -51,7 +51,10 @@
 }
 
 /* 主区域样式 */
+
+
 .hero-section {
+    margin-top: 3rem;
     background-color: #FCFCFC;
     margin-bottom: 3rem;
 }
@@ -78,6 +81,17 @@
     transition: all 0.3s ease;
     border: none;
 }
+.more-btn {
+    background-color: #ffffff;
+    color: #34A853;
+    padding: 0.8rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: solid;
+    border-color: #34A853;
+}   
 
 .join-btn:hover {
     background-color: #2A8644;
@@ -153,11 +167,12 @@
 }
 
 .feature-card {
-    border-radius: 15px;
-    background-color: #fff7f7;
+    border-radius: 6px;
+    background-color: #ffffff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    min-height: 300px;
-    margin: 3rem;
+    min-height: 30px;
+    margin-top: 3rem;
+    margin-bottom: 0rem;
 }
 
 .feature-card:nth-child(1)::before {
@@ -200,6 +215,7 @@
 .footer-section {
     background-color: #2D3748;
     color: #ffffff;
+    margin-top: 3rem;
 }
 
 .footer-title {
@@ -243,5 +259,5 @@
 .copyright {
     color: #AAAAAA;
     font-size: 0.9rem;
-    margin-top: 2rem;
+    margin-top: rem;
 }

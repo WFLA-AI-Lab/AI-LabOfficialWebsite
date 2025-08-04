@@ -1,0 +1,10 @@
+2025-08-04 17:56:21,308 - ERROR - Ö´ÐÐÊ§°Ü£ºtable magazine has no column named content_path
+Traceback (most recent call last):
+  File "c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\autosql.py", line 25, in execute_sql_from_file
+    cursor.executescript(sql_script)
+sqlite3.OperationalError: table magazine has no column named content_path
+2025-08-04 18:01:01,362 - ERROR - Ö´ÐÐÊ§°Ü£ºtable magazine has no column named content_path
+Traceback (most recent call last):
+  File "c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\autosql.py", line 25, in execute_sql_from_file
+    cursor.executescript(sql_script)
+sqlite3.OperationalError: table magazine has no column named content_path

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/error.css') }}">
   <meta charset="UTF-8">
-  <title>404 - 页面未找到</title>
+  <title>403 - 权限不足</title>
   <link rel="stylesheet" href="css/404.css">
 </head>
 <body>
@@ -10,25 +12,14 @@
   <div class="error-container">
     <!-- 错误标题区 -->
     <div class="error-header">
-      <h1 class="error-code">404</h1>
-      <p class="error-subtitle">哦，页面好像迷路了...</p>
+      <h1 class="error-code">403</h1>
+      <p class="error-subtitle">您暂无权限访问此页面，您也可以点击<a href="/">这里</a>返回主页。</p>
+      <p class="error-subtitle">别担心，欢迎您点击<a href="/">这里</a>前往github issues反馈讨论问题。</p>
+      <p class="error-subtitle">致敬先辈↓</p>
     </div>
     <!-- 插画区（可替换为SVG/动图） -->
     <div class="error-illustration">
-      <img src="images/404-illustration.svg" alt="404插画">
-    </div>
-    <!-- 操作区：引导功能 -->
-    <div class="error-actions">
-      <p class="error-desc">请检查网址，或试试这些方式：</p>
-      <a href="/" class="btn home-btn">返回首页</a>
-      <div class="search-box">
-        <input type="text" placeholder="搜索内容...">
-        <button class="search-btn">搜索</button>
-      </div>
-      <div class="hot-links">
-        <a href="/popular">热门推荐</a>
-        <a href="/contact">联系我们</a>
-      </div>
+      <img src="/static/images/404.png" alt="404插画">
     </div>
   </div>
 </body>

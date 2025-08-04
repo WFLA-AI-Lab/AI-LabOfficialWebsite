@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-custom">
+    <div class="container">
+        <!-- 左侧Logo和文字 -->
+        <div class="d-flex align-items-center">
+            <a href="/" class="me-3">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="AILab Logo" class="logo-img">
+            </a>
+            <a href="/" class="navbar-brand brand-text">世外首个AI社团</a>
+            <a href="/members" class="navbar-text ms-3 d-none d-lg-block">社团成员</a>
+        </div>
+        
+        <!-- 右侧导航 -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">动态</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/magazine">社刊</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        社团活动
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="https://docs.google.com/">签到表</a></li>
+                        <li><a class="dropdown-item" href="/activities">活动</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resources">相关资源</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/personal">社长小窝</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
