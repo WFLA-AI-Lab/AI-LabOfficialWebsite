@@ -8,3 +8,16 @@ Traceback (most recent call last):
   File "c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\autosql.py", line 25, in execute_sql_from_file
     cursor.executescript(sql_script)
 sqlite3.OperationalError: table magazine has no column named content_path
+2025-08-04 23:00:42,733 - INFO - 成功执行SQL文件：c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\auto_sql_scripts.sql
+2025-08-04 23:02:23,277 - ERROR - 执行失败：UNIQUE constraint failed: magazine.id
+Traceback (most recent call last):
+  File "c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\autosql.py", line 25, in execute_sql_from_file
+    cursor.executescript(sql_script)
+sqlite3.IntegrityError: UNIQUE constraint failed: magazine.id
+2025-08-04 23:04:05,697 - ERROR - 执行失败：near "INSERT": syntax error
+Traceback (most recent call last):
+  File "c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\autosql.py", line 25, in execute_sql_from_file
+    cursor.executescript(sql_script)
+sqlite3.OperationalError: near "INSERT": syntax error
+2025-08-04 23:04:22,459 - INFO - 成功执行SQL文件：c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\auto_sql_scripts.sql
+2025-08-04 23:08:10,394 - INFO - 成功执行SQL文件：c:\Users\lixiaorui\Desktop\AI lab\WebsiteAI-lab\sql_scripts\auto_sql_scripts.sql

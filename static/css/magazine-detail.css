@@ -1,6 +1,7 @@
 /* 文章头部样式 */
 .article-header {
     margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .article-title {
@@ -13,6 +14,7 @@
 .article-meta {
     color: #7f8c8d;
     font-size: 0.95rem;
+    margin-bottom: 1rem;
 }
 
 .meta-item {

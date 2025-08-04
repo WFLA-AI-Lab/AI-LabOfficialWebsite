@@ -49,7 +49,8 @@ class Magazine(db.Model):
     description = db.Column(db.Text)  # 摘要（替代原 abstract）
     file_path = db.Column(db.String(200))  # 社刊封面/附件路径（保留）
     content_path = db.Column(db.String(200), nullable=False)  # 新增：正文HTML文件路径
-    published_at = db.Column(db.DateTime, default=datetime.utcnow)
+    # published_at = db.Column(db.DateTime, default=datetime.utcnow)
+    published_at = db.Column(db.String(150), nullable=False)  # 发布日期（字符串格式）
     author = db.Column(db.String(100))  # 作者
     read_time = db.Column(db.String(20))  # 阅读时间
 
