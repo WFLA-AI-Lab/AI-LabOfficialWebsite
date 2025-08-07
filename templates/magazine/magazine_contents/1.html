@@ -1,15 +1,51 @@
-<!-- 1.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机器学习基础算法与实践</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .article-header { margin-bottom: 40px; }
+        .article-title { font-size: 2.5em; }
+        .article-meta { font-size: 0.9em; color: #666; }
+        .meta-item { margin-right: 15px; }
+        .article-summary { background-color: #f8f9fa; border-radius: 8px; padding: 20px; }
+        .summary-title { font-size: 1.2em; }
+        .row { display: flex; }
+        .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+        .col-md-9 { flex: 0 0 75%; max-width: 75%; padding-left: 20px; }
+        .toc-container { background-color: #f8f9fa; padding: 20px; border-radius: 8px; position: sticky; top: 20px; }
+        .toc-title { font-size: 1.2em; margin-bottom: 10px; }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-link { text-decoration: none; color: #007bff; display: block; margin-bottom: 5px; }
+        .article-section { margin-bottom: 40px; }
+        .section-title { font-size: 1.8em; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .subsection-title { font-size: 1.4em; margin-top: 20px; }
+        .section-text { margin-bottom: 15px; }
+        .section-list { margin-bottom: 15px; }
+        .math-equation { background-color: #f8f9fa; padding: 10px; border-radius: 4px; text-align: center; font-style: italic; }
+        .image-container { text-align: center; }
+        .article-image { max-width: 100%; height: auto; border-radius: 8px; }
+        .image-caption { font-style: italic; color: #666; margin-top: 5px; }
+        .code-block { background-color: #f8f9fa; padding: 15px; border-radius: 4px; overflow-x: auto; }
+        code { font-family: Consolas, monospace; }
+        pre { margin: 0; }
+    </style>
+</head>
+<body>
+
 <!-- 文章头部信息 -->
 <header class="article-header mb-10 text-center">
     <h1 class="article-title mb-4">机器学习基础算法与实践</h1>
     <div class="article-meta mb-6">
         <span class="meta-item">发布日期: 2024年5月15日</span>
         <span class="meta-item">作者: 张小明</span>
-        <span class="meta-item">阅读时间: 12分钟</span>
+        <span class="meta-item">阅读时间: 15分钟</span> <!-- 更新阅读时间以反映新增内容 -->
     </div>
     <div class="article-summary max-w-3xl mx-auto p-4 bg-light rounded">
         <h3 class="summary-title mb-2">摘要</h3>
-        <p>本文介绍了机器学习的基础算法，包括线性回归、逻辑回归和决策树等，并通过实际代码示例展示了这些算法的应用。我们将探讨每种算法的原理、优缺点及适用场景，帮助读者快速掌握机器学习的核心概念和实践技能。</p>
+        <p>本文介绍了机器学习的基础算法，包括线性回归、逻辑回归和决策树等，并通过实际代码示例展示了这些算法的应用。我们将探讨每种算法的原理、优缺点及适用场景，帮助读者快速掌握机器学习的核心概念和实践技能。本文还新增了决策树的代码实现示例，并补充了各算法的优缺点分析，以提供更全面的理解。</p> <!-- 更新摘要以反映完善 -->
     </div>
 </header>
 
@@ -63,6 +99,18 @@
             </div>
             
             <p class="section-text">其中，\( m \) 是样本数量，\( y_i \) 是实际值，\( \hat{y}_i \) 是预测值。</p>
+            
+            <!-- 新增优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：简单易懂，计算效率高，解释性强。</li>
+                <li>缺点：假设线性关系，对非线性数据表现差，易受异常值影响。</li>
+            </ul>
+            
+            <div class="image-container mb-6">
+                <img src="https://picsum.photos/800/400?random=2" alt="线性回归示例图" class="article-image">
+                <p class="image-caption">图2: 线性回归拟合数据点的示例，显示了回归线与散点图</p>
+            </div>
         </section>
 
         <!-- 逻辑回归部分 -->
@@ -83,6 +131,13 @@
                 <img src="https://picsum.photos/800/400?random=1" alt="Sigmoid函数图像" class="article-image">
                 <p class="image-caption">图1: Sigmoid函数图像，显示了输入值与输出概率之间的关系</p>
             </div>
+            
+            <!-- 新增优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：输出概率值，易于解释，对二分类问题有效。</li>
+                <li>缺点：假设线性决策边界，对多分类需扩展，易过拟合。</li>
+            </ul>
         </section>
 
         <!-- 决策树部分 -->
@@ -105,6 +160,18 @@
             </div>
             
             <p class="section-text">其中，\( D \) 是数据集，\( C_k \) 是数据集 \( D \) 中属于第 \( k \) 类的样本子集。</p>
+            
+            <!-- 新增优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：易于理解和可视化，无需数据归一化，可处理非线性关系。</li>
+                <li>缺点：易过拟合，计算复杂度高，对噪声敏感。</li>
+            </ul>
+            
+            <div class="image-container mb-6">
+                <img src="https://picsum.photos/800/400?random=3" alt="决策树示例图" class="article-image">
+                <p class="image-caption">图3: 决策树结构示例，展示了节点分裂过程</p>
+            </div>
         </section>
 
         <!-- 代码实现部分 -->
@@ -171,6 +238,29 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"准确率: {accuracy:.2f}")</code></pre>
             </div>
+            
+            <!-- 新增决策树实现 -->
+            <h3 class="subsection-title">决策树实现</h3>
+            <p class="section-text">决策树可用于分类问题，这里我们使用与逻辑回归类似的数据集演示：</p>
+            
+            <div class="code-block mb-6">
+                <pre><code class="language-python"># 使用相同的二分类示例数据
+X, y = make_classification(n_samples=1000, n_features=10, n_informative=5, random_state=42)
+
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# 创建并训练模型
+model = DecisionTreeClassifier(max_depth=5, random_state=42)  # 设置最大深度以避免过拟合
+model.fit(X_train, y_train)
+
+# 预测
+y_pred = model.predict(X_test)
+
+# 评估
+accuracy = accuracy_score(y_test, y_pred)
+print(f"准确率: {accuracy:.2f}")</code></pre>
+            </div>
         </section>
 
         <!-- 结论部分 -->
@@ -183,7 +273,10 @@ print(f"准确率: {accuracy:.2f}")</code></pre>
                 <li>逻辑回归适用于二分类问题，如垃圾邮件识别、疾病预测等</li>
                 <li>决策树可用于分类和回归，且结果易于解释</li>
             </ul>
-            <p class="section-text">在实际应用中，我们需要根据具体问题和数据特点选择合适的算法，并通过交叉验证等方法评估模型性能。</p>
+            <p class="section-text">在实际应用中，我们需要根据具体问题和数据特点选择合适的算法，并通过交叉验证等方法评估模型性能。建议读者通过实践代码进一步实验这些算法，并探索高级主题如随机森林和梯度提升机。</p> <!-- 更新结论以提供更多建议 -->
         </section>
     </article>
 </div>
+
+</body>
+</html>

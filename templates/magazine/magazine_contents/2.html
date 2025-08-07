@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大语言模型基础与实践</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .article-header { margin-bottom: 40px; }
+        .article-title { font-size: 2.5em; }
+        .article-meta { font-size: 0.9em; color: #666; }
+        .meta-item { margin-right: 15px; }
+        .article-summary { background-color: #f8f9fa; border-radius: 8px; padding: 20px; }
+        .summary-title { font-size: 1.2em; }
+        .row { display: flex; }
+        .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+        .col-md-9 { flex: 0 0 75%; max-width: 75%; padding-left: 20px; }
+        .toc-container { background-color: #f8f9fa; padding: 20px; border-radius: 8px; position: sticky; top: 20px; }
+        .toc-title { font-size: 1.2em; margin-bottom: 10px; }
+        .toc-list { list-style: none; padding: 0; }
+        .toc-link { text-decoration: none; color: #007bff; display: block; margin-bottom: 5px; }
+        .article-section { margin-bottom: 40px; }
+        .section-title { font-size: 1.8em; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .subsection-title { font-size: 1.4em; margin-top: 20px; }
+        .section-text { margin-bottom: 15px; }
+        .section-list { margin-bottom: 15px; }
+        .math-equation { background-color: #f8f9fa; padding: 10px; border-radius: 4px; text-align: center; font-style: italic; }
+        .image-container { text-align: center; }
+        .article-image { max-width: 100%; height: auto; border-radius: 8px; }
+        .image-caption { font-style: italic; color: #666; margin-top: 5px; }
+        .code-block { background-color: #f8f9fa; padding: 15px; border-radius: 4px; overflow-x: auto; }
+        code { font-family: Consolas, monospace; }
+        pre { margin: 0; }
+    </style>
+</head>
+<body>
+
+<!-- 文章头部信息 -->
+<header class="article-header mb-10 text-center">
+    <h1 class="article-title mb-4">大语言模型基础与实践</h1>
+    <div class="article-meta mb-6">
+        <span class="meta-item">发布日期: 2025年8月7日</span>
+        <span class="meta-item">作者: 张小明</span>
+        <span class="meta-item">阅读时间: 15分钟</span>
+    </div>
+    <div class="article-summary max-w-3xl mx-auto p-4 bg-light rounded">
+        <h3 class="summary-title mb-2">摘要</h3>
+        <p>本文介绍了大语言模型的基础知识，包括Transformer架构、BERT和GPT模型等，并通过实际代码示例展示了这些模型的应用。我们将探讨每种模型的原理、优缺点及适用场景，帮助读者快速掌握大语言模型的核心概念和实践技能。本文还包含了代码实现示例，并补充了各模型的优缺点分析，以提供更全面的理解。</p>
+    </div>
+</header>
+
+<div class="row">
+    <!-- 左侧目录 -->
+    <aside class="col-md-3 mb-8">
+        <div class="toc-container sticky-top">
+            <h3 class="toc-title">目录</h3>
+            <ul class="toc-list">
+                <li><a href="#intro" class="toc-link">引言</a></li>
+                <li><a href="#transformer" class="toc-link">Transformer架构</a></li>
+                <li><a href="#bert" class="toc-link">BERT模型</a></li>
+                <li><a href="#gpt" class="toc-link">GPT模型</a></li>
+                <li><a href="#implementation" class="toc-link">代码实现</a></li>
+                <li><a href="#conclusion" class="toc-link">结论</a></li>
+            </ul>
+        </div>
+    </aside>
+
+    <!-- 右侧内容区 -->
+    <article class="col-md-9 article-content">
+        <!-- 引言部分 -->
+        <section id="intro" class="article-section mb-10">
+            <h2 class="section-title">引言</h2>
+            <p class="section-text">大语言模型（Large Language Models, LLMs）是自然语言处理领域的一个重大突破，它们能够处理和生成人类般的文本。近年来，大语言模型在聊天机器人、翻译系统和内容生成等方面取得了显著成果。</p>
+            <p class="section-text">本文将介绍大语言模型的基础知识，包括：</p>
+            <ul class="section-list">
+                <li>Transformer架构 - LLMs的核心基础</li>
+                <li>BERT - 用于理解任务的双向模型</li>
+                <li>GPT - 用于生成任务的自回归模型</li>
+            </ul>
+            <p class="section-text">这些模型是理解更先进AI系统（如ChatGPT）的基础，掌握它们对于深入学习自然语言处理至关重要。</p>
+        </section>
+
+        <!-- Transformer架构部分 -->
+        <section id="transformer" class="article-section mb-10">
+            <h2 class="section-title">Transformer架构</h2>
+            <p class="section-text">Transformer是一种基于自注意力机制的神经网络架构，用于序列建模任务。它避免了RNN的顺序依赖问题，支持并行计算。核心组件包括编码器和解码器，每层包含多头注意力机制和前馈网络。</p>
+            
+            <h3 class="subsection-title">自注意力机制</h3>
+            <p class="section-text">自注意力计算公式如下：</p>
+            
+            <div class="math-equation mb-4">
+                \( \text{Attention}(Q, K, V) = \softmax\left(\frac{QK^T}{\sqrt{d_k}}\right) V \)
+            </div>
+            
+            <p class="section-text">其中，Q、K、V分别是查询、键和值矩阵，\( d_k \)是键的维度。</p>
+            
+            <!-- 优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：并行计算高效，捕捉长距离依赖，灵活性强。</li>
+                <li>缺点：计算资源需求高，对位置信息需额外编码，训练数据依赖大。</li>
+            </ul>
+            
+            <div class="image-container mb-6">
+                <img src="https://picsum.photos/800/400?random=4" alt="Transformer架构图" class="article-image">
+                <p class="image-caption">图1: Transformer模型架构，显示了编码器和解码器的堆叠层</p>
+            </div>
+        </section>
+
+        <!-- BERT模型部分 -->
+        <section id="bert" class="article-section mb-10">
+            <h2 class="section-title">BERT模型</h2>
+            <p class="section-text">BERT（Bidirectional Encoder Representations from Transformers）是一种预训练模型，通过Masked LM和Next Sentence Prediction任务学习双向上下文表示。它适用于文本分类、命名实体识别等下游任务。</p>
+            
+            <h3 class="subsection-title">预训练任务</h3>
+            <p class="section-text">Masked LM：随机掩盖15%的token，并预测它们。</p>
+            
+            <div class="math-equation mb-4">
+                \( L = -\sum \log P(w_i | \text{context}) \)
+            </div>
+            
+            <p class="section-text">其中，\( w_i \)是被掩盖的词。</p>
+            
+            <div class="image-container mb-6">
+                <img src="https://picsum.photos/800/400?random=5" alt="BERT预训练图" class="article-image">
+                <p class="image-caption">图2: BERT的Masked LM预训练过程示例</p>
+            </div>
+            
+            <!-- 优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：双向上下文理解强，微调简单，性能优秀。</li>
+                <li>缺点：预训练计算密集，无法生成序列，模型大小庞大。</li>
+            </ul>
+        </section>
+
+        <!-- GPT模型部分 -->
+        <section id="gpt" class="article-section mb-10">
+            <h2 class="section-title">GPT模型</h2>
+            <p class="section-text">GPT（Generative Pre-trained Transformer）是一种自回归模型，通过预测下一个token的方式预训练。它适用于文本生成、问答等任务，后续版本如GPT-3引入了少样本学习。</p>
+            
+            <h3 class="subsection-title">自回归生成</h3>
+            <p class="section-text">生成过程：逐步预测下一个词，直到结束。</p>
+            
+            <div class="math-equation mb-4">
+                \( P(w_1, w_2, ..., w_n) = \prod_{i=1}^n P(w_i | w_1, ..., w_{i-1}) \)
+            </div>
+            
+            <p class="section-text">其中，每个\( P(w_i | \cdot) \)由Transformer解码器计算。</p>
+            
+            <!-- 优缺点 -->
+            <h3 class="subsection-title">优缺点</h3>
+            <ul class="section-list">
+                <li>优点：生成能力强，零样本/少样本学习，通用性高。</li>
+                <li>缺点：单向上下文，易产生幻觉，计算成本高。</li>
+            </ul>
+            
+            <div class="image-container mb-6">
+                <img src="https://picsum.photos/800/400?random=6" alt="GPT生成过程图" class="article-image">
+                <p class="image-caption">图3: GPT的自回归文本生成示例</p>
+            </div>
+        </section>
+
+        <!-- 代码实现部分 -->
+        <section id="implementation" class="article-section mb-10">
+            <h2 class="section-title">代码实现</h2>
+            <p class="section-text">下面我们使用Python和Hugging Face的Transformers库实现上述模型。首先，我们需要导入必要的库（假设已安装transformers）：</p>
+            
+            <div class="code-block mb-6">
+                <pre><code class="language-python">import torch
+from transformers import BertTokenizer, BertForMaskedLM
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+from transformers import pipeline</code></pre>
+            </div>
+            
+            <h3 class="subsection-title">BERT实现</h3>
+            <p class="section-text">使用BERT进行掩码填充：</p>
+            
+            <div class="code-block mb-6">
+                <pre><code class="language-python"># 加载模型和分词器
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertForMaskedLM.from_pretrained('bert-base-uncased')
+
+# 示例文本
+text = "The capital of France is [MASK]."
+inputs = tokenizer(text, return_tensors='pt')
+
+# 预测
+with torch.no_grad():
+    outputs = model(**inputs)
+    predictions = outputs.logits
+
+# 获取掩码位置的预测
+mask_token_index = torch.where(inputs['input_ids'] == tokenizer.mask_token_id)[1]
+predicted_token_id = predictions[0, mask_token_index].argmax(axis=-1)
+print(tokenizer.decode(predicted_token_id))  # 输出: paris</code></pre>
+            </div>
+            
+            <h3 class="subsection-title">GPT实现</h3>
+            <p class="section-text">使用GPT-2生成文本：</p>
+            
+            <div class="code-block mb-6">
+                <pre><code class="language-python"># 加载模型和分词器
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+# 示例提示
+prompt = "Once upon a time"
+inputs = tokenizer(prompt, return_tensors='pt')
+
+# 生成
+outputs = model.generate(inputs['input_ids'], max_length=50, num_return_sequences=1)
+print(tokenizer.decode(outputs[0], skip_special_tokens=True))</code></pre>
+            </div>
+            
+            <h3 class="subsection-title">Transformer管道示例</h3>
+            <p class="section-text">使用管道进行情感分析（基于BERT）：</p>
+            
+            <div class="code-block mb-6">
+                <pre><code class="language-python"># 使用管道
+classifier = pipeline('sentiment-analysis')
+result = classifier("I love learning about AI!")
+print(result)  # 输出: [{'label': 'POSITIVE', 'score': 0.999}]</code></pre>
+            </div>
+        </section>
+
+        <!-- 结论部分 -->
+        <section id="conclusion" class="article-section mb-10">
+            <h2 class="section-title">结论</h2>
+            <p class="section-text">本文介绍了大语言模型的基础：Transformer架构、BERT和GPT。这些模型在NLP任务中表现出色，是现代AI系统的基石。</p>
+            <p class="section-text">每种模型都有其适用场景：</p>
+            <ul class="section-list">
+                <li>Transformer适用于序列任务，如机器翻译</li>
+                <li>BERT适用于理解任务，如情感分析、问答</li>
+                <li>GPT适用于生成任务，如故事写作、代码生成</li>
+            </ul>
+            <p class="section-text">在实际应用中，选择合适的模型并通过微调优化性能。建议读者通过实践代码进一步实验，并探索高级主题如Llama和Mistral模型。</p>
+        </section>
+    </article>
+</div>
+
+</body>
+</html>

@@ -24,7 +24,7 @@ def allowed_file(filename):
 
 # 权限装饰器
 # ------------------------------------------------------
-
+        
 def admin_required(f):
     """管理员权限验证装饰器"""
     @wraps(f)
@@ -116,7 +116,7 @@ def register_routes(app):
         """社刊详情页"""
         with app.app_context():
             magazine = Magazine.query.get_or_404(id)
-        return render_template('magazine/detail.html', magazine=magazine)
+        return render_template('magazine/detail.html', magazine=magazine,id = str(id))
     
     @app.route('/activities')
     def activity_list():
