@@ -61,7 +61,19 @@
 .magazine-articles {
     margin-top: 0.8rem;
     padding-left: 1.5rem;
-    line-height: 1.8;
+    line-height: 0.6;
+}
+
+.toc-row {
+    display: flex;
+    justify-content: flex-start; /* 保持左对齐 */
+    gap: 20%; /* 调整两列之间的间距 */
+    margin-bottom: 0.2rem;
+}
+
+.toc-item {
+    flex: 0 0 35%; /* 每列占据卡片宽度的2/5 */
+    text-align: left;
 }
 
 @media (max-width: 768px) {
