@@ -45,7 +45,7 @@ class News(db.Model):
 class Magazine(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    issue = db.Column(db.String(20), nullable=False)  # 期号
+    is_selected = db.Column(db.Boolean, nullable=False)  # 期号
     description = db.Column(db.Text)  # 摘要（替代原 abstract）
     file_path = db.Column(db.String(200))  # 社刊封面/附件路径（保留）
     content_path = db.Column(db.String(200), nullable=False)  # 新增：正文HTML文件路径
@@ -53,17 +53,19 @@ class Magazine(db.Model):
     published_at = db.Column(db.String(150), nullable=False)  # 发布日期（字符串格式）
     author = db.Column(db.String(100))  # 作者
     read_time = db.Column(db.String(20))  # 阅读时间
+    toc = db.Column(db.Text)  # 存储目录的JSON字符串
 
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
-            'issue': self.issue,
+            'is_selected': self.is_selected,
             'description': self.description,
             'content_path': self.content_path,  # 返回HTML路径
-            'published_at': self.published_at.strftime('%Y-%m-%d'),
+            'published_at': self.published_at,
             'author': self.author,
-            'read_time': self.read_time
+            'read_time': self.read_time,
+            'toc': self.toc  # 返回目录JSON
         }
 
 

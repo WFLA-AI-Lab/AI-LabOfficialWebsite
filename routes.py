@@ -102,21 +102,93 @@ def register_routes(app):
         
         return render_template('news/detail.html', 
                              news=news_item,
-                             related_news=related_news)
+                             related_news= related_news)
     
     @app.route('/magazine')
     def magazine_list():
         """社刊列表页"""
+        def to_roman(n):
+            vals = [(1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'), (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'), (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')]
+            roman = ''
+            for value, symbol in vals:
+                while n >= value:
+                    roman += symbol
+                    n -= value
+            return roman
         with app.app_context():
-            magazines = Magazine.query.order_by(Magazine.published_at.desc()).all()
-        return render_template('magazine/list.html', magazines=magazines)
+            magazines_data = []
+            for m in Magazine.query.order_by(Magazine.id.desc()).all():
+                data = m.to_dict()
+                # 将 published_at 字符串转换为 datetime 对象
+                if isinstance(data['published_at'], str):
+                    try:
+                        data['published_at'] = datetime.datetime.strptime(data['published_at'], '%Y年%m月%d日')
+                    except ValueError:
+                        # 如果转换失败，设置为一个默认的 datetime 对象
+                        data['published_at'] = datetime.datetime(0000, 0, 0)
+                elif data['published_at'] is None:
+                    # 如果是 None，也设置为一个默认的 datetime 对象
+                    data['published_at'] = datetime.datetime(0000, 0, 0)
+
+                if data['toc']:
+                    try:
+                        import json
+                        toc_dict = json.loads(data['toc'])
+                        titles = [f"{to_roman(i+1)} {title}" for i, title in enumerate(list(toc_dict.keys())[:6])]
+                        formatted = []
+                        for i in range(0, len(titles), 2):
+                            line_content = f"<span class='toc-item'>·{titles[i]}</span>"
+                            if i+1 < len(titles):
+                                line_content += f"<span class='toc-item'>·{titles[i+1]}</span>"
+                            formatted.append(f"<div class='toc-row'> {line_content} </div>")
+                        if len(toc_dict) > 6:
+                            formatted.append('·...')
+                        data['formatted_toc'] = '<br>'.join(formatted)
+                    except:
+                        data['formatted_toc'] = ''
+                else:
+                    data['formatted_toc'] = ''
+                magazines_data.append(data)
+        return render_template('magazine/list.html', magazines=magazines_data)
     
     @app.route('/magazine/<int:id>')
     def magazine_detail(id):
         """社刊详情页"""
         with app.app_context():
             magazine = Magazine.query.get_or_404(id)
-        return render_template('magazine/detail.html', magazine=magazine,id = str(id))
+            # 如果存在目录数据，将其转换为Python字典
+            toc_data = None
+            if magazine.toc:
+                import json
+                try:
+                    toc_data = json.loads(magazine.toc)
+                except json.JSONDecodeError:
+                    app.logger.error(f"社刊ID {id} 的目录数据格式错误")
+        return render_template('magazine/detail.html', magazine=magazine, id=str(id), toc_data=toc_data)
+    
+    @app.route('/api/magazine/<int:id>/toc')
+    def magazine_toc_api(id):
+        """获取社刊目录的API"""
+        with app.app_context():
+            magazine = Magazine.query.get_or_404(id)
+            if magazine.toc:
+                import json
+                try:
+                    toc_data = json.loads(magazine.toc)
+                    return jsonify({
+                        'success': True,
+                        'toc': toc_data
+                    })
+                except json.JSONDecodeError:
+                    return jsonify({
+                        'success': False,
+                        'error': '目录数据格式错误'
+                    }), 500
+            else:
+                return jsonify({
+                    'success': False,
+                    'error': '该社刊没有目录数据'
+                }), 404
     
     @app.route('/activities')
     def activity_list():
