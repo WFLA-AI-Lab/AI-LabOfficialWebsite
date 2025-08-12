@@ -8,6 +8,7 @@ from models import (
     Admin, News, Magazine, Activity, 
     Resource, Project, Personal
 )
+from api_handlers import handle_magazine_upload, handle_magazine_delete, handle_magazine_update
 
 
 # 配置与工具函数
@@ -189,6 +190,21 @@ def register_routes(app):
                     'success': False,
                     'error': '该社刊没有目录数据'
                 }), 404
+
+    @app.route('/api/magazine/create', methods=['POST'])
+    def upload_magazine_html():
+        """上传社刊HTML的API"""
+        return handle_magazine_upload()
+
+    @app.route('/api/magazine/delete/<int:magazine_id>', methods=['DELETE'])
+    def delete_magazine(magazine_id):
+        """删除社刊的API"""
+        return handle_magazine_delete(magazine_id)
+
+    @app.route('/api/magazine/update/<int:magazine_id>', methods=['POST'])
+    def update_magazine(magazine_id):
+        """更新社刊的API"""
+        return handle_magazine_update(magazine_id)
     
     @app.route('/activities')
     def activity_list():

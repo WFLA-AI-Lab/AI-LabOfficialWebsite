@@ -5,6 +5,7 @@ import sys
 import sqlite3
 import os
 from bs4 import BeautifulSoup
+from count_html_files import get_ids_from_html_files
 
 # 添加项目根目录到系统路径，以便导入项目模块
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -13,8 +14,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'instance', 'ailab.db')
 
 # 社刊HTML文件目录
-MAGAZINE_CONTENTS_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-                                  'templates', 'magazine', 'magazine_contents')
+MAGAZINE_CONTENTS_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    'templates', 'magazine', 'magazine_contents'
+)
 
 def extract_data_from_html(html_file_path):
     """
@@ -54,6 +57,8 @@ def extract_data_from_html(html_file_path):
     # 提取目录
     toc_dict = {}
     toc_list = soup.select('.toc-list')
+
+    is_selcted = title.startswith("精选：")
     if toc_list:
         for toc_item in toc_list[0].find_all('a', class_='toc-link'):
             section_name = toc_item.text.strip()
@@ -69,7 +74,7 @@ def extract_data_from_html(html_file_path):
         'author': author,
         'read_time': read_time,
         'toc': toc_dict,
-        'is_selected':title.startswith("精选：")
+        'is_selected':is_selcted,
     }
     return update
 
@@ -82,10 +87,11 @@ def update_magazine_data_in_db():
     
     # 获取所有社刊记录
     cursor.execute("SELECT id FROM magazine")
-    magazine_ids = [row[0] for row in cursor.fetchall()]
-    magazine_ids = [1,2,3]
+    magazine_db_ids = [row[0] for row in cursor.fetchall()]
+    magazine_file_ids = get_ids_from_html_files()
+    missing_ids =set(magazine_file_ids) - set(magazine_db_ids)
     
-    for magazine_id in magazine_ids:
+    for magazine_id in missing_ids:
         # 构建HTML文件路径
         html_file_path = os.path.join(MAGAZINE_CONTENTS_DIR, f"{magazine_id}.html")
         
@@ -95,29 +101,61 @@ def update_magazine_data_in_db():
             print(bool(data))
             # 更新数据库
             try:
-                cursor.execute("""
-                    INSERT INTO magazine (
-                        id, title, published_at, description, file_path, 
-                        content_path, author, read_time, toc, is_selected
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (
-                    magazine_id,  # 若id是自增主键，可移除该参数及字段
-                    data['title'],
-                    data['published_at'],
-                    data['description'],
-                    data['file_path'],
-                    data['content_path'],
-                    data['author'],
-                    data['read_time'],
-                    json.dumps(data['toc'], ensure_ascii=False),
-                    data['is_selected'],  # issue字段固定值
-                ))
-                print(f"已添加社刊 ID {magazine_id} 的记录")
+                # 检查记录是否存在
+                cursor.execute("SELECT id FROM magazine WHERE id = ?", (magazine_id,))
+                existing_record = cursor.fetchone()
+
+                if existing_record:
+                    # 如果记录存在，执行UPDATE
+                    cursor.execute("""
+                        UPDATE magazine SET
+                            title = ?,
+                            published_at = ?,
+                            description = ?,
+                            file_path = ?,
+                            content_path = ?,
+                            author = ?,
+                            read_time = ?,
+                            toc = ?,
+                            is_selected = ?
+                        WHERE id = ?
+                    """, (
+                        data['title'],
+                        data['published_at'],
+                        data['description'],
+                        data['file_path'],
+                        data['content_path'],
+                        data['author'],
+                        data['read_time'],
+                        json.dumps(data['toc'], ensure_ascii=False),
+                        data['is_selected'],
+                        magazine_id,
+                    ))
+                    print(f"已更新社刊 ID {magazine_id} 的记录")
+                else:
+                    # 如果记录不存在，执行INSERT
+                    cursor.execute("""
+                        INSERT INTO magazine (
+                            id, title, published_at, description, file_path, 
+                            content_path, author, read_time, toc, is_selected
+                        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """, (
+                        magazine_id,
+                        data['title'],
+                        data['published_at'],
+                        data['description'],
+                        data['file_path'],
+                        data['content_path'],
+                        data['author'],
+                        data['read_time'],
+                        json.dumps(data['toc'], ensure_ascii=False),
+                        data['is_selected'],
+                    ))
+                    print(f"已添加社刊 ID {magazine_id} 的记录")
             except sqlite3.IntegrityError:
-                print(f"错误：社刊 ID {magazine_id} 已存在（主键冲突），跳过添加")
-            print(f"已更新社刊 ID {magazine_id} 的数据信息")
+                print(f"警告：数据库访问失败, 对Magazine ID {magazine_id} 的UPDATE/INSERT操作失败。")    
         else:
-            print(f"警告: 社刊 ID {magazine_id} 的HTML文件不存在: {html_file_path}")
+            print(f"警告: Magazine ID {magazine_id} 的HTML文件不存在: {html_file_path}")
     
     # 提交更改并关闭连接
     conn.commit()
