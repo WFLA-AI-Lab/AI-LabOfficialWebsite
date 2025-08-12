@@ -2,7 +2,7 @@ import requests
 import os
 
 API_ENDPOINT = 'http://ai-lab.club/api/magazine/create'
-API_PASSWORD = 'ailabtmppwd'  # 替换为实际密码
+API_PASSWORD = os.environ.get("AILAB_DELETE_API_PWD", "ailabtmppwd")  # 替换为实际密码
 
 def send_html_file(file_path):
     """
