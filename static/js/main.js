@@ -1,7 +1,7 @@
 // 打字效果实现
 document.addEventListener('DOMContentLoaded', function() {
     const textElement = document.querySelector('.typing-text');
-    const text = "探索人工智能的无限可能，共创智能未来。";
+    const text = "我们是世外首个专注于 AI 的学术社团。我们致力于传授使用、调试和开发的知识与经验，涵盖大模型与 Agent、神经网络、计算机视觉、传统机器学习等主题。活动包括知识讲座、项目实践、模型比赛等，配合社团联动，让 AI 成为你的创新工具。";
     let index = 0;
     let isDeleting = false;
     let isEnd = false;
