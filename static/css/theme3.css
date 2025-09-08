@@ -55,8 +55,8 @@
 
 .hero-section {
     margin-top: 3rem;
-    background-color: #FCFCFC;
-    margin-bottom: 3rem;
+    background-color: #FFFCFCFC;
+    margin-bottom: 5rem;
 }
 
 .ai-lab-title {
@@ -84,13 +84,10 @@
 .more-btn {
     background-color: #ffffff;
     color: #34A853;
-    padding: 0.8rem 2.5rem;
-    border-radius: 30px;
+    /* padding: 0.8rem 2.5rem; */
     font-weight: 600;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: solid;
-    border-color: #34A853;
 }   
 
 .join-btn:hover {

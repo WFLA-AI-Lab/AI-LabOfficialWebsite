@@ -26,18 +26,14 @@ class Admin(db.Model):
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    content = db.Column(db.Text, nullable=False)
-    file_path = db.Column(db.String(200))  # 存储文件路径
-    is_published = db.Column(db.Boolean, default=False)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     def to_dict(self):
         return {
             'id': self.id,
             'title': self.title,
-            'content': self.content,
-            'file_path': self.file_path,
-            'is_published': self.is_published,
+
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S')
         }
 

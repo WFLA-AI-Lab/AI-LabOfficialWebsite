@@ -6,10 +6,10 @@
     <title>AILab - 世外首个AI社团</title>
     <link rel="icon" type="image/x-icon" href="/static/images/logoonly.ico">
     <!-- 引入外部资源 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus@2.3.4/dist/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.min.css">
+<link href="https://fonts.loli.net/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/3.3.2/tailwind.min.css" rel="stylesheet">
     <!-- 主题样式 - 可切换theme1.css、theme2.css、theme3.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
     
@@ -113,7 +113,7 @@
                 <p class="typing-text"></p>
             </div>
             
-            <a href="http://101.230.1.173:6300/clubs/join" class="btn join-btn">加入我们</a>
+            <!-- <a href="http://101.230.1.173:6300/clubs/join" class="btn join-btn">加入我们</a> -->
             <a href="/magazine/0" class="btn more-btn">了解更多</a>
         </div>
     </section>
@@ -128,9 +128,9 @@
                 <div class="col-md-4">
                     <div class="card department-card bg-blur card-hover h-100">
                         <div class="card-body p-6 content-wrapper">
-                            <h3 class="card-title">大语言模型</h3>
-                            <h4 class="card-subtitle text-muted mb-4">Large Language Model</h4>
-                            <p class="card-text">研究自然语言处理技术，开发智能对话系统和文本生成应用，探索语言模型的无限可能。</p>
+                            <h3 class="card-title">大语言模型与Agent</h3>
+                            <h4 class="card-subtitle text-muted mb-4">Large Language Model&Agent</h4>
+                            <p class="card-text">研究自然语言处理技术，最前沿的大模型，开发多模态智能体，提高学习效率。</p>
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                         <div class="card-body p-6 content-wrapper">
                             <h3 class="card-title">神经网络</h3>
                             <h4 class="card-subtitle text-muted mb-4">Neural Network</h4>
-                            <p class="card-text">专注于深度学习架构研究，包括CNN、RNN等模型，应用于图像识别、语音处理等领域。</p>
+                            <p class="card-text">专注于深度学习架构研究，包括CNN、RNN、LSTM、Transformer等各种神经网络模型，探究其在图像识别、视频分析、语音处理等领域的最新应用。</p>
                         </div>
                     </div>
                 </div>
@@ -152,7 +152,7 @@
                         <div class="card-body p-6 content-wrapper">
                             <h3 class="card-title">传统机器学习</h3>
                             <h4 class="card-subtitle text-muted mb-4">Traditional Machine Learning</h4>
-                            <p class="card-text">研究经典机器学习算法，如SVM、决策树等，解决分类、回归问题，打下坚实AI基础。</p>
+                            <p class="card-text">研究经典机器学习算法，如SVM、决策树等，解决分类、回归问题，了解AI技术的前期基础和简单应用。</p>
                         </div>
                     </div>
                 </div>
@@ -169,8 +169,15 @@
                     <div class="card feature-card bg-blur card-hover h-100">
                         <div class="card-body p-6 content-wrapper">
                             <h3 class="feature-title mb-4">动态 News</h3>
-                            <p class="feature-desc">及时了解社团最新活动、项目进展和AI领域前沿资讯，把握人工智能发展脉搏。</p>
+                            <p class="feature-desc">及时了解社团最新活动和重大决定，实时掌握AI Lab的动向。</p>
                             <a href="/news" class="feature-link mt-4 d-inline-block">查看更多 →</a>
+                            <ul class="list-unstyled mt-3">
+                                <p class="feature-desc">最近两期👇</p>
+                                {% for item in latest_news_items %}
+                                    <li><a href="/news/{{ item.id }}" class="text-decoration-none text-primary">{{ item.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -180,8 +187,16 @@
                     <div class="card feature-card bg-blur card-hover h-100">
                         <div class="card-body p-6 content-wrapper">
                             <h3 class="feature-title mb-4">社刊 Magazine</h3>
-                            <p class="feature-desc">汇集社团研究成果、技术教程和AI科普文章，分享知识，共同成长。</p>
+                            <p class="feature-desc">汇集社团研究成果、技术教程和AI科普文章，分享知识和经验，共同成长。</p>
                             <a href="/magazine" class="feature-link mt-4 d-inline-block">浏览期刊 →</a>
+                            <br/>
+                            <ul class="list-unstyled mt-3">
+                                <p class="feature-desc">最近两期👇</p>
+                                {% for item in latest_magazine_items %}
+                                    <li><a href="/magazine/{{ item.id }}" class="text-decoration-none text-primary">{{ item.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -193,8 +208,8 @@
     {% include 'components/footer.html' %}
 
     <!-- 引入JS资源 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/element-plus@2.3.4/dist/index.full.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.full.min.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>

@@ -1,1 +1,41 @@
-welcome to /templates/personal/list.html
+
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源 | AILab - 世外首个AI社团</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logoonly.ico') }}">
+    <!-- 引入外部资源 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.min.css">
+<link href="https://fonts.loli.net/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/3.3.2/tailwind.min.css" rel="stylesheet">
+    <!-- 主题样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
+    <!-- 社刊页面样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magazine.css') }}">
+
+    
+
+</head>
+<body>
+    <!-- 导航栏 -->
+    {% include 'components/navbar.html' %}
+
+<form action="/" method="POST">
+    <h2>Please verify id.</h2>
+    Username: <input type="text" name="fname"><br>
+    Password: <input type="text" name="lname"><br>
+    <input type="submit" value="提交">
+</form>
+
+    <!-- 底部区域 -->
+    {% include 'components/footer.html' %}
+
+    <!-- 引入JS资源 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.full.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/magazine.js') }}"></script>
+</body>
+</html>
