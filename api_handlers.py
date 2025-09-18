@@ -10,7 +10,8 @@ DB_PATH = os.path.join( 'instance', 'ailab.db')
 
 # 配置
 ALLOWED_EXTENSIONS = {'html'}
-API_PASSWORD = os.environ.get("AILAB_API_PWD", "ailab_api_pwd")  # 从环境变量获取，提供默认值
+API_PASSWORD = os.environ.get("AILAB_API_PWD", "ailab_api_pwd")
+API_PASSWORD = "ailab_api_pwd"  # 从环境变量获取，提供默认值
 DELETE_API_PASSWORD = os.environ.get("AILAB_DELETE_API_PWD", "ailabtmppwd") # 从环境变量获取，提供默认值
 MAGAZINE_CONTENT_DIR = os.path.join('templates', 'magazine', 'magazine_contents')
 
