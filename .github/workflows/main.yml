@@ -26,4 +26,4 @@ jobs:
 
       
       - name: run auto/main.py
-        run: python auto/main.py --API_KEY ${{ secrets.API_TOKEN }}
+        run: python auto/main.py --API_KEY ${{ secrets.OPENAI_API_KEY }}
