@@ -1,6 +1,6 @@
 from openai import OpenAI
 import os,random,datetime
-def extract_magazine():
+def extract_magazine(aiAPIkey):
     # 随机选择一个作者
     authors_list = ['李睿远','王思成','黄子淳','杨其臻']
     author = random.choice(authors_list)
@@ -16,7 +16,7 @@ def extract_magazine():
 
 
     client = OpenAI(
-        api_key=api_key,
+        api_key=aiAPIkey,
         base_url="https://api.deepseek.com",
     )
 
