@@ -3,6 +3,7 @@ import os
 
 API_ENDPOINT_PREFIX = 'http://ai-lab.club/api/magazine/update/'
 API_PASSWORD = os.environ.get("AILAB_API_PWD", "ailab_api_pwd")  # 从环境变量获取，提供默认值
+API_PASSWORD = "ailab_api_pwd"  # 从环境变量获取，提供默认值
 
 def update_magazine_file(magazine_id, file_path):
     """

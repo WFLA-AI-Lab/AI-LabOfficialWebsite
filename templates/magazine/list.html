@@ -6,10 +6,10 @@
     <title>社刊 | AILab - 世外首个AI社团</title>
     <link rel="icon" type="image/x-icon" href="/static/images/logoonly.ico">
     <!-- 引入外部资源 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus@2.3.4/dist/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.min.css">
+<link href="https://fonts.loli.net/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/3.3.2/tailwind.min.css" rel="stylesheet">
     <!-- 主题样式 -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
     <!-- 社刊页面样式 -->
@@ -52,7 +52,7 @@
             <h1 class="mb-6"><span class="cascadia-font ai-lab-title">社刊 Magazine</span></h1>
             
             <div class="intro-text mb-8 max-w-3xl mx-auto">
-                <p class="typing-text">我们的社刊汇集了社团成员的研究成果、技术教程和AI科普文章，旨在分享知识，共同成长。每一期都围绕不同的AI主题展开，涵盖从基础概念到前沿技术的丰富内容。</p>
+                <p class="typing-text">我们的社刊汇集了技术教程和AI科普文章，旨在分享知识，共同成长。每一期都围绕不同的AI主题展开，涵盖从基础概念到前沿技术的丰富内容。</p>
             </div>
         </div>
     </section>
@@ -60,7 +60,7 @@
     <!-- 社刊列表区域 -->
     <section class="departments-section py-12 mb-10">
         <div class="container">
-            <h2 class="section-title text-center mb-10">期刊列表</h2>
+            <h2 class="section-title text-center mb-10">社刊列表</h2>
             
             <div class="magazine-list">
                 {% for magazine in magazines %}
@@ -88,9 +88,9 @@
     {% include 'components/footer.html' %}
 
     <!-- 引入JS资源 -->
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/element-plus@2.3.4/dist/index.full.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.full.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
     <script src="{{ url_for('static', filename='js/magazine.js') }}"></script>
 </body>
 </html>

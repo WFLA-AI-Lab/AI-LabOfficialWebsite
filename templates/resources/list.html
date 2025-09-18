@@ -1,1 +1,113 @@
-welcome to /templates/resources/list.html
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资源 | AILab - 世外首个AI社团</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logoonly.ico') }}">
+    <!-- 引入外部资源 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.min.css">
+<link href="https://fonts.loli.net/css2?family=Cascadia+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/3.3.2/tailwind.min.css" rel="stylesheet">
+    <!-- 主题样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
+    <!-- 社刊页面样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/magazine.css') }}">
+
+    
+    <style>
+        /* 全局通用样式 */
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .cascadia-font {
+            font-family: 'Cascadia Code', monospace;
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    {% include 'components/navbar.html' %}
+
+    <!-- 资源介绍区域 -->
+    <section class="hero-section py-12 mb-10">
+        <div class="container text-center">
+            <h1 class="mb-6"><span class="cascadia-font ai-lab-title">资源 Resources</span></h1>
+            
+            <div class="intro-text mb-8 max-w-3xl mx-auto">
+                <p class="typing-text">这里汇集了AI学习和研究的精选资源，助您在AI领域不断探索和成长。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资源列表区域 -->
+    <section class="departments-section py-12 mb-10">
+        <div class="container">
+            <h2 class="section-title text-center mb-10">精选资源</h2>
+            
+            <div class="magazine-list news-list-container">
+                <div class="magazine-item">
+                    <div class="magazine-card">
+                        <h3 class="magazine-title">Google Colab</h3>
+                        <p class="magazine-content">免费的云端Jupyter笔记本环境，支持GPU，非常适合深度学习实验和教学。</p>
+                        <a href="https://colab.research.google.com/" target="_blank" class="feature-link mt-3 d-inline-block">访问资源 →</a>
+                    </div>
+                </div>
+                <div class="magazine-item">
+                    <div class="magazine-card">
+                        <h3 class="magazine-title">Kaggle</h3>
+                        <p class="magazine-content">数据科学竞赛平台，提供数据集、代码环境和社区，是提升技能的绝佳场所。</p>
+                        <a href="https://www.kaggle.com/" target="_blank" class="feature-link mt-3 d-inline-block">访问资源 →</a>
+                    </div>
+                </div>
+                <div class="magazine-item">
+                    <div class="magazine-card">
+                        <h3 class="magazine-title">Trae</h3>
+                        <p class="magazine-content">一个强大的AI开发平台，提供丰富的工具和资源，加速您的AI项目开发。</p>
+                        <a href="https://www.trae.ai/" target="_blank" class="feature-link mt-3 d-inline-block">访问资源 →</a>
+                    </div>
+                </div>
+                <div class="magazine-item">
+                    <div class="magazine-card">
+                        <h3 class="magazine-title">Hugging Face</h3>
+                        <p class="magazine-content">领先的开源AI社区，提供预训练模型、数据集和工具，专注于自然语言处理。</p>
+                        <a href="https://huggingface.co/" target="_blank" class="feature-link mt-3 d-inline-block">访问资源 →</a>
+                    </div>
+                </div>
+                <div class="magazine-item">
+                    <div class="magazine-card">
+                        <h3 class="magazine-title">3Blue1Brown</h3>
+                        <p class="magazine-content">通过精美的动画解释数学概念，让复杂的数学变得直观易懂，是学习AI数学基础的好帮手。</p>
+                        <a href="https://www.3blue1brown.com/" target="_blank" class="feature-link mt-3 d-inline-block">访问资源 →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部区域 -->
+    {% include 'components/footer.html' %}
+
+    <!-- 引入JS资源 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/element-plus/2.3.4/index.full.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/magazine.js') }}"></script>
+</body>
+</html>

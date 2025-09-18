@@ -6,7 +6,7 @@ DELETE_API_PASSWORD = os.environ.get("AILAB_DELETE_API_PWD", "ailabtmppwd") # �
 
 def delete_magazine_file(magazine_id):
     """
-    向删除API发送请求以删除指定ID的杂志
+    向删除API发送请求以删除指定ID的Magazine
     """
     api_url = f"{API_ENDPOINT_PREFIX}{magazine_id}"
     headers = {'Authorization': DELETE_API_PASSWORD}
@@ -23,8 +23,8 @@ def delete_magazine_file(magazine_id):
 
 if __name__ == '__main__':
     # 示例用法
-    # 请将 '1' 替换为你要删除的杂志ID
-    magazine_id_to_delete = input("请输入要删除的杂志ID: ")
+    # 请将 '1' 替换为你要删除的MagazineID
+    magazine_id_to_delete = input("请输入要删除的Magazine ID: ")
     try:
         magazine_id_to_delete = int(magazine_id_to_delete)
         delete_magazine_file(magazine_id_to_delete)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻详情页示例</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/theme3.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/news-detail.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>这是一个新闻详情页的示例标题</h1>
+        <p class="news-meta">发布时间：2023-10-27 | 来源：AI Lab</p>
+        <div class="news-content">
+            <p>这是新闻详情页的示例内容。您可以在这里添加新闻的具体内容，包括文字、图片、视频等。</p>
+            <p>例如，这里可以是一段关于人工智能最新进展的描述，或者是一个关于实验室研究成果的详细介绍。</p>
+            <img src="{{ url_for('static', filename='images/news-bg.jpg') }}" alt="示例图片" class="content-image">
+            <p>我们致力于提供最新、最准确的AI领域资讯，帮助您了解行业动态。</p>
+        </div>
+        <div class="related-news">
+            <h2>相关新闻</h2>
+            <ul>
+                <li><a href="#">相关新闻标题1</a></li>
+                <li><a href="#">相关新闻标题2</a></li>
+                <li><a href="#">相关新闻标题3</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

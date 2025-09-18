@@ -59,30 +59,22 @@ def register_routes(app):
         """网站首页"""
         # 在应用上下文中执行数据库查询
         with app.app_context():
-            latest_news = News.query.filter_by(is_published=True)\
-                            .order_by(News.created_at.desc()).first()
-            latest_magazine = Magazine.query.order_by(Magazine.published_at.desc()).first()
+            latest_news_items = News.query.order_by(News.created_at.desc()).limit(2).all()
+            latest_magazine_items = Magazine.query.order_by(Magazine.published_at.desc()).limit(2).all()
             featured_projects = Project.query.filter_by(is_featured=True).limit(2).all()
         
         return render_template('index.html', 
-                             latest_news=latest_news,
-                             latest_magazine=latest_magazine,
+                             latest_news_items=latest_news_items,
+                             latest_magazine_items=latest_magazine_items,
                              featured_projects=featured_projects)
     
     @app.route('/news')
     def news_list():
         """动态列表页"""
         with app.app_context():
-            page = request.args.get('page', 1, type=int)
-            per_page = 8
-            pagination = News.query.filter_by(is_published=True)\
-                        .order_by(News.created_at.desc())\
-                        .paginate(page=page, per_page=per_page, error_out=False)
-            news_items = pagination.items
+            news_items = News.query.order_by(News.created_at.desc()).all()
         
-        return render_template('news/list.html', 
-                             news_items=news_items,
-                             pagination=pagination)
+        return render_template('news/list.html', news=news_items)
     
     @app.route('/news/<int:id>')
     def news_detail(id):
@@ -91,13 +83,10 @@ def register_routes(app):
             news_item = News.query.get_or_404(id)
             
             # 未发布内容仅管理员可见
-            if not news_item.is_published and 'admin_logged_in' not in session:
-                flash('该动态未发布或不存在', 'danger')
-                return redirect(url_for('news_list'))
+
             
             # 获取相关动态
-            related_news = News.query.filter_by(is_published=True)\
-                            .filter(News.id != id)\
+            related_news = News.query.filter(News.id != id)\
                             .order_by(News.created_at.desc())\
                             .limit(3).all()
         

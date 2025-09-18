@@ -164,3 +164,4 @@ def update_magazine_data_in_db():
 
 if __name__ == "__main__":
     update_magazine_data_in_db()
+    extract_data_from_html('C:/Users/lixiaorui/Desktop/AI lab 25/myweb/AI-LabOfficialWebsite/templates/magazine/magazine_contents/4.html')
